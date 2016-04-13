@@ -1,0 +1,23 @@
+{
+  "name": "nodejs_project",
+  "version": "1.0.0",
+  "description": "Proyecto Ejemplo de NODEJS, JADE, MONGO, EXPRESS ....",
+  "main": "\u001b[A\u001b[B",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javiju84/NodeJSProyectExample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javiju84/NodeJSProyectExample/issues"
+  },
+  "homepage": "https://github.com/javiju84/NodeJSProyectExample#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "jade": "^1.11.0"
+  }
+}
