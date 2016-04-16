@@ -26,6 +26,12 @@ Tipos de datos que podemos definir para un documentos
 =>Array
 */
 
+user_schema.virtual("password_confirmation").get(function(){
+	return this.p_c;
+	}).set(function(password){
+		this.p_c = password;
+	});
+
 var User = mongoose.model("User",user_schema);/*model es el constructor que genera los modelos 
 												y User es el nombre del modelo*/
 

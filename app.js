@@ -41,7 +41,10 @@ app.get("/login",function(req,res){
 /*creamos la ruta login.jade*/
 /*post porque está definido en el login.jade "form(action="/users",method="POST")"*/
 app.post("/users", function(req,res){
-	var user = new User({email: req.body.email, password: req.body.password});
+	var user = new User({email: req.body.email, 
+							password: req.body.password,
+							password_confirmation: req.body.password_confirmation
+						});
 
 	user.save(function(){
 		res.send("Guardamos tus datos")
