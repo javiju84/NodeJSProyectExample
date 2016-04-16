@@ -2,8 +2,9 @@ var express = require("express");
 
 var app = express();
 
-app.use(express.static('public'));  
 
+app.use(express.static('public'));  
+app.use(express.static('assets'));  
 /*para montar un middlewares hay que pasarlo como parámetro al método "use" 
 sobre el objeto "app" que se crea cuando ejecutamos la función "express()"
 archivos estáticos o  static: imagenes, css , javascript. (no presenta compilación
