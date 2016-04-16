@@ -1,7 +1,11 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema; //esquema => 'Schema'
 /*Schema es el atributo que retorna un objeto. 
 Es un constructor que sirve para poder generar nuestros esquemas*/
+
+//Conexion MongoDB
+mongoose.connect("mongodb://localhost/fotos");
+
 var user_schema = new Schema({
 	name: String,
 	username: String,
@@ -21,3 +25,8 @@ Tipos de datos que podemos definir para un documentos
 =>Objectid
 =>Array
 */
+
+var User = mongoose.model("User",user_schema);/*model es el constructor que genera los modelos 
+												y User es el nombre del modelo*/
+
+module.exports.User = User;
