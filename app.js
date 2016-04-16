@@ -1,6 +1,19 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+
+mongoose.connect("mongodb://localhost/fotos");
+
+var userSchemaJSON = {
+	email:String,
+	password:String
+};
+
+var user_schema = new Schema(userSchemaJSON);
+
+var User = mongoose.model("User",user_schema);
 
 /*montamos los middlewares*/
 /*para montar un middlewares hay que pasarlo como parámetro al método "use" 
@@ -30,14 +43,20 @@ app.get("/",function(req,res){
 });
 
 app.get("/login",function(req,res){
+	User.find(function(err,doc){  /*pasamos una condicion de busqueda http://is.gd/jtZBgc  min.11*/
+		console.log(doc);
 		res.render("login");
+	});
 });
 
 /*creamos la ruta login.jade*/
 /*post porque está definido en el login.jade "form(action="/users",method="POST")"*/
 app.post("/users", function(req,res){
-	console.log("Email: "+ req.body.email);
-	console.log("Contraseña: "+ req.body.password);/*confirmar que los parámetros se están leyendo */
-	res.send("Recibimos tus datos")
+	var user = new User({email: req.body.email, password: req.body.password});
+
+	user.save(function(){
+		res.send("Guardamos tus datos")
+	});	
+	
 });
 app.listen(8080);
