@@ -43,7 +43,7 @@ app.get("/",function(req,res){
 });
 
 app.get("/login",function(req,res){
-	User.find(function(err,doc){  /*pasamos una condicion de busqueda http://is.gd/jtZBgc  min.11*/
+	User.find(function(err,doc){  /*pasamos una condicion de busqueda https://youtu.be/AbELfRULn1U  min.11*/
 		console.log(doc);
 		res.render("login");
 	});
