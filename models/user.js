@@ -4,15 +4,30 @@ var Schema = mongoose.Schema; //esquema => 'Schema'
 Es un constructor que sirve para poder generar nuestros esquemas*/
 
 //Conexion MongoDB
-mongoose.connect("mongodb://localhost/fotos");
+mongoose.connect("mongodb://localhost/usuarios");
+
+
+var posibles_valores = ["M","F"];
+
+var email_match=[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,"Coloca un email valido"];
+
+var password_validation = {
+	validator: function(p){
+		return this.password_confirmation == p;
+	} ,
+	message: "Las contraseñas no son iguales"
+	}	
+
 
 var user_schema = new Schema({
 	name: String,
-	username: String,
-	password: String,
-	age: Number,
-	email: String,
-	date_of_birth: Date
+	username: {type: String, required: true,maxlenght:[50,"Username es muy grande"]},
+	password: {
+		type: String, minlenght:[8,"El password es muy corto"], validate: password_validation},
+	age: {type: Number,min:[18,"La edad no puede ser menor que 18 años"],max:[100,"La edad no puede ser mayor de 100 años"]},
+	email: {type: String, required: "El correo es obligatorio",match:email_match},
+	date_of_birth: Date,
+	sex:{type: String, enum:{values: posibles_valores, message:"Opción no válida"}}
 });
 /*
 Tipos de datos que podemos definir para un documentos
