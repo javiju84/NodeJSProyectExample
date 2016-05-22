@@ -31,11 +31,15 @@ app.get("/",function(req,res){
 	res.render("index");
 });
 
-app.get("/login",function(req,res){
+app.get("/signup",function(req,res){
 	User.find(function(err,doc){  /*pasamos una condicion de busqueda https://youtu.be/AbELfRULn1U  min.11*/
 		console.log(doc);
-		res.render("login");
+		res.render("signup");
 	});
+});
+
+app.get("/login",function(req,res){
+	res.render("login");
 });
 
 /*creamos la ruta login.jade*/
@@ -46,7 +50,7 @@ app.post("/users", function(req,res){
 							password_confirmation: req.body.password_confirmation,
 							username: req.body.username
 						});
-	console.log(user.password_confirmation);
+	//console.log(user.password_confirmation);
 	user.save(function(err){
 		if(err){
 			console.log(String(err));
@@ -55,5 +59,14 @@ app.post("/users", function(req,res){
 	});	
 	
 });
+app.post("/sessions", function(req,res){
+	//find => nos  devuelve una coleccion  {}=> query, ""=> campos que queremos que nos devuelva del documento , function => callback
+	//findOne => nos devuelve solo un documento
+	User.findOne({username: req.body.username,email: req.body.email,password: req.body.password},function(err,docs){
+		console.log(docs);
+		res.send("Hola a todos")
+	});
+});
+
 app.listen(8080);
 console.log('conexion puerto 8080');
