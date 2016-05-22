@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;//llamamos al Schema, librerias
 var session = require("express-session");
+var router_app = require("./router_app");
 var app = express();
 
 
@@ -17,6 +18,11 @@ app.use(express.static('assets'));
 
 app.use(bodyParser.json());// para peticiones application/json
 app.use(bodyParser.urlencoded({extended: true})); 
+/* /app */
+
+
+
+
 app.use(session({
 	secret: "123byuhbsdah12ub",
 	resave: false, //ver video 25
@@ -75,6 +81,6 @@ app.post("/sessions", function(req,res){
 		res.send("sesion iniciada");
 	});
 });
-
+app.use("/app",router_app);
 app.listen(8080);
 console.log('conexion puerto 8080');
