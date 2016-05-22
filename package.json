@@ -18,6 +18,7 @@
   "homepage": "https://github.com/javiju84/NodeJSProyectExample#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "jade": "^1.11.0",

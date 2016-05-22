@@ -1,7 +1,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;//llamamos al Schema, librerias
-var session = require("express-session");
+//var session = require("express-session");
+var cookieSession = require("cookie-session");
 var router_app = require("./routes_app");
 var app = express();
 var session_middleware = require("./middlewares/session");
@@ -22,13 +23,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 /* /app */
 
 
+app.use(cookieSession({
+	name: "session",
+	keys: ["llave-1","llave-2"]
 
-
+}));
+/*
 app.use(session({
 	secret: "123byuhbsdah12ub",
 	resave: false, //ver video 25
 	saveUninitialized: false
 }));
+*/
 /*true o el false define el olgaritmo con que se va hacer el parsing la libreria,
 si el 'false' no se puede hacer parsing de array o parámetro que se envian de una 
 peticón get o post que no sean JSON*/
