@@ -2,8 +2,9 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;//llamamos al Schema, librerias
 var session = require("express-session");
-var router_app = require("./router_app");
+var router_app = require("./routes_app");
 var app = express();
+var session_middleware = require("./middlewares/session");
 
 
 /*montamos los middlewares*/
@@ -81,6 +82,8 @@ app.post("/sessions", function(req,res){
 		res.send("sesion iniciada");
 	});
 });
+
+app.use("/app",session_middleware);
 app.use("/app",router_app);
 app.listen(8080);
 console.log('conexion puerto 8080');
